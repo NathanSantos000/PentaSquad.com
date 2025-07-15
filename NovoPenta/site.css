@@ -1,0 +1,230 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+:root {
+    --cor-primaria: #1a2a6c;
+    --cor-secundaria: #b21f1f;
+    --cor-destaque: #fdbb2d;
+    --fonte-principal: 'Roboto', sans-serif; /* Fonte padrão para o corpo do texto se não for sobrescrita */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex; /* Para empurrar o footer para o final */
+    flex-direction: column; /* Para empurrar o footer para o final */
+    min-height: 100vh; /* Para empurrar o footer para o final */
+    font-family: var(--fonte-principal); /* Usa a fonte definida em --fonte-principal */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), 
+                url('https://i.postimg.cc/T1Yf7cq7/IMG-20250525-WA0019ssssss.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 1rem;
+    text-align: center;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--cor-destaque);
+    color: black;
+}
+
+.container {
+    flex-grow: 1; /* Permite que o container ocupe o espaço restante */
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+section {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: none; /* Esconde todas as seções por padrão */
+}
+
+section.active {
+    display: block; /* Mostra apenas a seção com a classe 'active' */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1{
+    color: var(--cor-destaque);
+    margin-bottom: 0.8rem;
+    font-family: 'Press Start 2P', sans-serif;
+}
+
+h2, h3 {
+    color: var(--cor-destaque);
+    margin-bottom: 1rem;
+    font-family: 'Permanent Marker', cursive; 
+}
+
+/* Regra para mudar a fonte de TODOS os parágrafos (letras brancas) */
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Mude 'Roboto' para a fonte que você deseja para os parágrafos.
+                                           Certifique-se de que a fonte esteja importada no HTML ou no CSS. */
+    /* A cor branca já deve vir do body, mas se quiser garantir: */
+    /* color: white; */
+}
+
+
+.intro-layout {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.intro-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    flex-shrink: 0;
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.intro-text h2 {
+    font-size: 2.5rem;
+    color: var(--cor-destaque);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    /* Não precisa de 'font-family' aqui novamente se já está em h1, h2, h3 globalmente */
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    /* Se você definir 'p' globalmente, ele já aplicará a fonte aqui.
+       Se quiser uma fonte *diferente* APENAS para os parágrafos do intro-text,
+       adicione font-family aqui. Ex: font-family: 'Arial', sans-serif; */
+}
+
+.membros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.membro-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.membro-card:hover {
+    transform: translateY(-10px);
+}
+
+.membro-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.membro-info {
+    padding: 1rem;
+}
+
+.patente {
+    display: inline-block;
+    background-color: var(--cor-destaque);
+    color: black;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.historia {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.historia-img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .intro-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .intro-text {
+        text-align: center;
+    }
+
+    .intro-text h2 {
+        font-size: 2rem;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+    }
+}

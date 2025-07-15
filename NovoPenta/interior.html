@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PentaSquad - Nosso Grupo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lucida+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cor-primaria: #1a2a6c;
+            --cor-secundaria: #b21f1f;
+            --cor-destaque: #0066ff; /* Keep original blue, but you had yellow in a previous CSS snippet */
+        }
+
+        /* Using Roboto for body text and Permanent Marker for titles */
+        body {
+           font-family: 'Press Start 2P', sans-serif;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                        url('https://i.postimg.cc/T1Yf7cq7/IMG-20250525-WA0019ssssss.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Universal box-sizing, if not already set globally for all elements */
+        * {
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            text-align: center;
+            top: 0;
+            z-index: 100;
+        }
+
+        
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--cor-destaque);
+            color: black;
+        }
+
+        .container {
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1{
+            color: var(--cor-destaque);
+            margin-bottom: 0.8rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        h2, h3 {
+            color: var(--cor-destaque);
+            margin-bottom: 1rem;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* General paragraph style for readability */
+        p {
+            font-family: 'Roboto', sans-serif; /* Changed to Roboto for consistent readability */
+            font-size: 1.1rem; /* Adjusted for better readability */
+        }
+
+        .intro-layout {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .intro-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            flex-shrink: 0;
+        }
+
+        .intro-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            color: var(--cor-destaque);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .membros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .membro-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .membro-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .membro-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .membro-info {
+            padding: 1rem;
+        }
+
+        .patente {
+            display: inline-block;
+            background-color: var(--cor-destaque);
+            color: black;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            font-family: 'Roboto', sans-serif; /* Ensure patent text is readable */
+        }
+
+        .historia {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap; /* Added for responsiveness */
+        }
+
+        .historia-img {
+            width: 300px;
+            border-radius: 10px;
+            flex-shrink: 0; /* Prevents image from shrinking */
+        }
+
+        .historia div {
+            flex: 1; /* Allows text to take available space */
+            min-width: 280px; /* Ensures text block doesn't get too small */
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Styles for white text in 'Patentes' section list items */
+        #patentes ul li {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #patentes ul li strong {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+        }
+
+        /* --- Modal Styles --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 200; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px); /* Optional: Adds a blur effect to the background */
+        }
+
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.9);
+            margin: auto;
+            padding: 30px;
+            border: 1px solid var(--cor-destaque);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            animation: zoomIn 0.3s ease-out;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--cor-destaque);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #modalMemberImg {
+            max-width: 80%; /* Smaller image in modal */
+            height: auto;
+            border-radius: 8px;
+            margin: 15px auto; /* Center image */
+            object-fit: cover;
+            display: block; /* Ensure it respects margin:auto */
+        }
+
+        #modalMemberName {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        #modalMemberBio {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            text-align: left; /* Align bio text left for better readability */
+            margin-top: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-layout, .historia {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .intro-text, .historia div {
+                text-align: center;
+            }
+
+            .intro-text h2 {
+                font-size: 2rem;
+            }
+
+            .intro-text p {
+                font-size: 1rem;
+            }
+            .historia-img {
+                width: 100%; /* Make image full width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PentaSquad</h1>
+            <button id="playMusicBtn" style="background-color: var(--cor-destaque); color: black; font-family: 'Press Start 2P'; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px; border-radius: 5px;">
+    Tocar Música
+</button>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="inicio" style="background-color: var(--cor-destaque); color: black;">Início</a></li>
+                <li><a href="#" class="nav-link" data-section="membros">Membros</a></li>
+                <li><a href="#" class="nav-link" data-section="patentes">Patentes</a></li>
+                <li><a href="#" class="nav-link" data-section="historia">História</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="inicio" class="intro-layout active">
+            <img src="https://i.postimg.cc/9Fcw7K5L/IMG-20250525-WA0048.jpg" alt="Imagem do grupo PentaSquad" class="intro-img">
+            <div class="intro-text">
+                <h2>Bem-vindo ao PentaSquad</h2>
+                <p>Somos um grupo unido com o objetivo de celebrar a amizade através de jogos e momentos inesquecíveis, construindo laços fortes e duradouros.</p>
+                <p>Nossa missão é cultivar um ambiente de apoio mútuo, diversão e companheirismo, onde cada um se sinta parte de uma verdadeira família e possa crescer junto.</p>
+            </div>
+        </section>
+
+        <section id="membros">
+            <h2>Nossos Membros</h2>
+            <div class="membros-grid">
+                <div class="membro-card" data-member="anny_sofia">
+                    <img src="https://i.postimg.cc/28WPZjq9/c823fc66-3950-4cbd-8ef9-e2ed0d89f730.jpg" alt="Annye Sofia" class="membro-img">
+                    <div class="membro-info">
+                        <h3>Annye Sofia</h3>
+                        <span class="patente">Líder</span>
+                    </div>
+                </div>
+
+                <div class="membro-card" data-member="leticia_nascimento">
+                    <img src="https://i.postimg.cc/YCcdK1Cb/94df6109-4593-4cff-8e55-a64ada0ef2af.jpg" alt="Letícia Nascimento" class="membro-img">
+                    <div class="membro-info">
+                        <h3>Letícia Nascimento</h3>
+                        <span class="patente">Co-Líder</span>
+                    </div>
+                </div>
+
+                <div class="membro-card" data-member="michel_custodio">
+                    <img src="https://i.postimg.cc/1tvG8SHW/IMG-20250214-WA0069.jpg" alt="Michel Custódio" class="membro-img">
+                    <div class="membro-info">
+                        <h3>Michel Custódio</h3>
+                        <span class="patente">Veterano</span>
+                    </div>
+                </div>
+
+                <div class="membro-card" data-member="nathan_santos">
+                    <img src="https://i.postimg.cc/13KfmHMB/MAR-9738-c812c95e-4187-484a-b455-e04185911d9d-2.jpg" alt="Nathan Santos" class="membro-img">
+                    <div class="membro-info">
+                        <h3>Nathan Santos</h3>
+                        <span class="patente">Veterano</span>
+                    </div>
+                </div>
+
+                <div class="membro-card" data-member="yasmin_olivet">
+                    <img src="https://i.postimg.cc/Nf9MXtDK/8f2d4c79-2b3d-4937-9e43-b3c67b4d43cc.jpg" alt="Yasmin Olivet" class="membro-img">
+                    <div class="membro-info">
+                        <h3>Yasmin Olivet</h3>
+                        <span class="patente">Recruta</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="patentes">
+            <h2>Nossas Patentes</h2>
+            <div class="patentes-list">
+                <h3>Hierarquia do Grupo</h3>
+                <ul>
+                    <li><strong>Líder:</strong> Annye Sofia - Responsável pelo cuidado do grupo, assinar papéis, criação de regras, entre outros.</li>
+                    <li><strong>Co-Líder:</strong> Letícia Nascimento - Responsável pelos conselhos amorosos, cuidadora das pessoas e ajudadora das papeladas.</li>
+                    <li><strong>Veterano:</strong> Michel Custódio e Nathan Santos (fundador) - Cuidadores dos novos integrantes do grupo.</li>
+                    <li><strong>Recruta:</strong> Yasmin Olivet - Uma bela e linda princesa que precisa de cuidados e nova integrante do nosso grupo.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="historia">
+            <h2>Nossa História</h2>
+            <p>O PentaSquad foi fundado em <strong>05 de fevereiro de 2024</strong>.</p>
+            <div class="historia">
+                <img src="https://i.postimg.cc/T1Yf7cq7/IMG-20250525-WA0019ssssss.jpg" alt="Foto da fundação do grupo" class="historia-img">
+                <div>
+                    <p>O PentaSquad surgiu de um pequeno grupo de amigos que apenas gostavam de jogar Fortnite rotineiramente nas férias. Esse grupo foi crescendo cada vez mais, e tudo começou através de um jogo. Inicialmente, o grupo foi criado por Nathan Santos, com membros iniciais como Annye Sofia, Michel Custódio, Letícia Nascimento, e Adoni Guilherme (nosso mascote).</p>
+                    <p>Ao decorrer do tempo, conseguimos mais uma integrante, Laura Murtha, mas por obra do destino, ela decidiu se retirar da companhia daquele grupo. Hoje, felizmente, nosso grupo se encontra com 5 pessoas, sendo elas: Annye Sofia, Michel Custódio, Nathan Santos, Letícia Nascimento e Yasmin Olivet (nossa mais nova integrante).</p>
+                    <p>Este grupo foi feito com o objetivo de união e amizade constante... ESSE GRUPO NÃO É APENAS UM GRUPO, ISSO SE TORNOU UMA FAMÍLIA!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PentaSquad - Sem processos please!</p>
+    </footer>
+
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalMemberName"></h3>
+            <img id="modalMemberImg" src="" alt="Membro">
+            <p id="modalMemberBio"></p>
+        </div>
+ </div>
+ <audio id="bgMusic">
+  <source src="Wiz Khalifa - See You Again ft. Charlie Puth [Official Video] Furious 7 Soundtrack [RgKAFK5djSk].mp3" type="audio/mpeg">
+  
+</audio>
+
+    <script>
+        
+        // Navegação entre seções
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Remove 'active' class from all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+
+                // Update active navigation link styling
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.style.backgroundColor = '';
+                    navLink.style.color = '';
+                    navLink.classList.remove('active');
+                });
+
+                this.style.backgroundColor = 'var(--cor-destaque)';
+                this.style.color = 'black';
+                this.classList.add('active');
+            });
+        });
+
+        // Member Biography Modal
+        document.querySelectorAll('.membro-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const memberId = this.getAttribute('data-member');
+                const memberName = this.querySelector('h3').textContent;
+                const memberImgSrc = this.querySelector('img').src;
+                let memberBio = "";
+
+                // Define biographies for each member
+                switch(memberId) {
+                    case 'anny_sofia':
+                        memberBio = " Annye, 17 anos, cristã com coração missionário, mente curiosa e alma aventureira. Nascida em Manaus e forjada em Joinville, divide os dias entre fórmulas químicas, laboratório de farmácia e sonhos de MedVet. Ama praia, futebol (Botafogo, é claro) e carrega no peito a vontade de mudar o mundo — uma viagem e uma missão de cada vez.";
+                        break;
+                    case 'leticia_nascimento':
+                        memberBio = "Letícia é uma jovem curiosa e criativa, com vontade de fazer Jornalismo para contar histórias que importam. Ela gosta de explorar diferentes formas de expressão, como a fotografia, e valoriza a comunicação autêntica e verdadeira. Sempre em busca de aprendizado, Letícia combina reflexão e espontaneidade para entender o mundo ao seu redor e se conectar com as pessoas. Seu jeito genuíno e aberto faz dela alguém que está sempre pronta para novos desafios e descobertas.";
+                        break;
+                    case 'michel_custodio':
+                        memberBio = "Michel, 18 anos e cheio de histórias pra construir. Natural de São Paulo, atualmente vive em Joinville, onde encara a rotina CLT master 🤟. Fora do expediente, é dedicado ao taekwondo, arte marcial que leva com seriedade e disciplina. Com um chamado no coração, Michel trilha o caminho para se tornar pastor, buscando sempre crescer espiritualmente e impactar positivamente quem está à sua volta. Nos momentos de lazer, é presença garantida na praia com sua galera, mandando bem na altinha e aproveitando cada segundo da vida com leveza. Torcedor apaixonado, é corinthiano roxo, daqueles que vibra com cada lance e carrega o time no coração em qualquer situação. Michel é o tipo de pessoa que une foco, fé e diversão. Com ele, não tem meio-termo: onde está, deixa sua marca — seja no tatame, no trabalho, ou na caminhada espiritual.";
+                        break;
+                    case 'nathan_santos':
+                        memberBio = "Nathan é um jovem sonhador com um coração gigante e um sorriso que ilumina qualquer ambiente. Desde pequeno, ele descobriu uma de suas maiores paixões: fazer as pessoas rirem. Para ele, a felicidade dos outros é parte essencial da sua própria felicidade — e nada é mais valioso do que um momento de alegria compartilhado. Apaixonado pela vida e intensamente pelo amor, Nathan encontrou em sua namorada não só uma parceira, mas sua melhor amiga e companheira de todos os sonhos. Ele acredita que a vida só faz sentido quando vivida ao lado de quem se ama de verdade, e cada dia ao lado dela é uma nova chance de construir lembranças inesquecíveis. Mais do que apenas viver, Nathan quer viver bem. Viver de verdade. Com risadas, aventuras, abraços sinceros, planos ousados e os amigos que o acompanham em cada etapa da jornada. Ele não busca perfeição — busca intensidade, amor, e momentos que valem a pena lembrar. Nathan é aquele tipo de pessoa que transforma dias comuns em histórias incríveis. E no fundo, tudo o que ele quer é isso: viver a melhor versão da vida, com sua namorada do lado e seus amigos no coração.";
+                        break;
+                    case 'yasmin_olivet':
+                        memberBio = "Yasmin Olivet, 16 anos, é uma jovem cheia de personalidade, natural de Joinville, Santa Catarina. Atualmente no segundo ano do ensino médio, ela já tem planos bem traçados para o futuro: cursar Biomedicina e mergulhar de cabeça no universo da ciência e da saúde. Apaixonada por fotografia, Yasmin enxerga beleza nos pequenos detalhes do dia a dia, sempre pronta pra registrar um momento especial com sensibilidade e criatividade. Ela é daquelas pessoas que transforma coisas simples em arte — até a luz do fim de tarde vira poesia na lente dela. Com um jeito leve e espontâneo, Yas também é conhecida pelo seu bom humor. Alérgica a pó e com uma risada que escapa até o controle da bexiga (sim, ela mesma diz que faz xixi na calça se ri demais!), ela conquista quem está por perto com sua autenticidade e alegria contagiante. Sonhadora, determinada e divertida, Yasmin é o tipo de pessoa que deixa sua marca onde passa — seja com um clique, uma piada ou um abraço sincero.";
+                        break;
+                    default:
+                        memberBio = "Este membro ainda não possui uma biografia detalhada. Em breve, mais informações estarão disponíveis!";
+                }
+
+                document.getElementById('modalMemberName').textContent = memberName;
+                document.getElementById('modalMemberImg').src = memberImgSrc;
+                document.getElementById('modalMemberBio').textContent = memberBio;
+
+                document.getElementById('memberModal').style.display = 'flex';
+            });
+        });
+
+        // Close modal when clicking on the close button or outside the modal
+        document.querySelector('.close-button').addEventListener('click', function() {
+            document.getElementById('memberModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('memberModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+  const music = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playMusicBtn');
+
+    playBtn.addEventListener('click', function () {
+      if (music.paused) {
+        music.play().then(() => {
+          playBtn.textContent = "Pausar Música";
+        }).catch(() => {
+          alert("Clique novamente para autorizar o áudio.");
+        });
+      } else {
+        music.pause();
+        playBtn.textContent = "Tocar Música";
+      }
+    });
+
+    </script>
+</body>
+</html>
