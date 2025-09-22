@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - PentaSquad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', 'Roboto', sans-serif;
+            background-image: url('https://i.postimg.cc/T1Yf7cq7/IMG-20250525-WA0019ssssss.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .left-side {
+            flex: 1;
+            background-image: url('https://i.postimg.cc/T1Yf7cq7/IMG-20250525-WA0019ssssss.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #14142b, #0e0e1a);
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        .login-box {
+            background-color: #1c1c32;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 179, 0.5);
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .login-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00ffb3;
+            font-size: 28px;
+        }
+
+        .login-box form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-box input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2c2c3a;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .login-box input::placeholder {
+            color: #999;
+        }
+
+        .login-box button {
+            background: linear-gradient(90deg, #00ffb3, #00e6a1);
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .login-box button:hover {
+            background: linear-gradient(90deg, #00e6a1, #00ffb3);
+            transform: scale(1.03);
+        }
+
+        .error {
+            color: #ff4444;
+            font-size: 14px;
+            display: none;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                border-radius: 20px;
+            }
+
+            .left-side, .right-side {
+                flex: none;
+                width: 100%;
+                height: 200px;
+                border-radius: 0;
+            }
+
+            .right-side {
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side"></div>
+        <div class="right-side">
+            <div class="login-box">
+                <h2>Acesso Restrito</h2>
+          <form id="loginForm">
+    <input type="text" id="userId" placeholder="ID de Acesso" required>
+    <input type="password" id="password" placeholder="Senha" required>
+    <p class="error" id="errorMsg">Credenciais inválidas!</p>
+    <button type="submit">Entrar</button>
+    
+</form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const credenciaisValidas = [
+            { id: "NathanSantos", senha: "231209" },
+            { id: "LetNasciemnto", senha: "220507" },
+            { id: "MichelCustodio", senha: "220107" },
+            { id: "AnnyeSofia", senha: "310707" },
+            { id: "YasOlivet", senha: "070808" }
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('userId').value;
+            const senha = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            const credencialValida = credenciaisValidas.find(
+                cred => cred.id === id && cred.senha === senha
+            );
+
+            if (credencialValida) {
+                alert("Acesso permitido! Seja bem-vindo guerreira(o).");
+                window.location.href = "Interior.html";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
